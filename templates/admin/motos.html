@@ -1,0 +1,143 @@
+{% include "admin/cabecera.html" %}      
+
+<br/>
+<div class="container">
+    <div class="row">
+        <div
+            class="col-md-5"
+        >
+        <div class="card">
+            <div class="card-header">Datos de las Carpas</div>
+            <div class="card-body">
+                <form action="/admin/motos/guardar" method="post" enctype="multipart/form-data">
+
+                    <div class="mb-3">
+                        <label for="txtNombre" class="form-label">Tamaño:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="txtNombre"
+                            id="txtNombre"
+                            placeholder="Escriba el tamaño de la carpa"
+                            required
+                        />
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="txtImagen" class="form-label">Imagen:</label>
+                        <input
+                            type="file"
+                            class="form-control"
+                            name="txtImagen"
+                            id="txtImagen"
+                            placeholder="Seleccione la imagen"
+                            required
+                        />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="txtURL" class="form-label">URL compra</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="txtURL"
+                            id="txtURL"
+                            placeholder="Escribe el nuevo URL"
+                            required
+                        />
+                    </div>
+                    
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Agregar
+                    </button>
+                    
+                    
+                </form>
+            </div>
+            <div class="card-footer text-muted"></div>
+        </div>
+        </div>
+        <div
+            class="col-md-7"
+        >
+            <div
+                class="table"
+            >
+                <table
+                    class="table table-bordered"
+                >
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">URL</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for moto in motos %}
+                        <tr>
+                            <td>{{ moto.id }}</td>
+                            <td>{{ moto.nombre }}</td>
+                            <td><img width="60"
+                                src="/img/{{ moto.imagen }}"
+                                class="img-fluid rounded-top"
+                                alt=""
+                            />
+                            </td>
+                            <td>
+                                
+                            </br>
+                                <a
+                                    name=""
+                                    id=""
+                                    class="btn btn-success"
+                                    href="{{ moto.url }}"
+                                    role="button"
+                                    >Enlace de compra</a
+                                >
+                            </td>
+                            <td>
+                              
+                                <form action="/admin/motos/borrar" method="post">
+                                    <div class="mb-3">
+                                        <input value="{{ moto.id }}"
+                                            type="hidden"
+                                            class="form-control"
+                                            name="txtID"
+                                            id="txtID"
+                                        />
+                                        <br/>
+                                        <button
+                                            type="submit"
+                                            class="btn btn-danger"
+                                        >
+                                            Eliminar
+                                        </button>
+                                        
+                                    </div>
+                                </form>
+
+
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="5">No hay motos disponibles.</td>
+                        </tr>
+                        {% endfor %} 
+                    </tbody>
+                    
+                </table>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+{% include "admin/pie.html" %}      

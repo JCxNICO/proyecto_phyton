@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Carpas de Moto</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+  </head>
+
+  <body>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="alert alert-{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <nav class="navbar navbar-expand navbar-light bg-light">
+      <div class="nav navbar-nav">
+        <a class="nav-item nav-link" href="/">Inicio</a>
+        <a class="nav-item nav-link" href="/motos">Carpas</a>
+        <a class="nav-item nav-link" href="/nosotros">Nosotros</a>
+        <a class="nav-item nav-link" href="/admin/login">Login</a>
+      </div>
+    </nav>
+    <div class="container">
+      <br />
+    </div>
+  </body>
+</html>
